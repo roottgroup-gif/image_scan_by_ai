@@ -1,0 +1,46 @@
+[build]
+# Use Python 3.11 for the build environment
+builder = "nixpacks"
+
+# Set the build command to install Python dependencies
+buildCommand = "python -m pip install ."
+
+[deploy]
+# Start the Flask application
+startCommand = "python main.py"
+
+# Set the port that Railway will expose
+port = 5000
+
+# Health check endpoint
+healthcheckPath = "/"
+healthcheckTimeout = 30
+
+[env]
+# Production environment
+FLASK_ENV = "production"
+PYTHONUNBUFFERED = "1"
+
+# Disable TensorFlow warnings in production
+TF_CPP_MIN_LOG_LEVEL = "2"
+
+# Port configuration (Railway will set this automatically)
+PORT = "5000"
+
+[services.web]
+# Web service configuration
+buildCommand = "python -m pip install ."
+startCommand = "python main.py"
+
+# Resource allocation
+replicas = 1
+restartPolicyType = "always"
+
+# Health monitoring
+healthcheckPath = "/"
+healthcheckTimeout = 30
+healthcheckInterval = 30
+
+[networking]
+# Railway will automatically provide HTTPS
+# No additional configuration needed
