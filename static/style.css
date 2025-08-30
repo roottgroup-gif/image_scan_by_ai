@@ -1,0 +1,1574 @@
+/* Professional Tailwind CSS Enhancements */
+
+/* Smooth scrolling for all browsers */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(156, 163, 175, 0.5);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(156, 163, 175, 0.7);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    background: rgba(75, 85, 99, 0.5);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+    background: rgba(75, 85, 99, 0.7);
+}
+
+/* Firefox scrollbar */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+}
+
+.dark * {
+    scrollbar-color: rgba(75, 85, 99, 0.5) transparent;
+}
+
+/* Professional focus states */
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+a:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* Enhanced Glassmorphism - Responsive */
+.glass {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.dark .glass {
+    background: rgba(31, 41, 55, 0.25);
+    border: 1px solid rgba(75, 85, 99, 0.18);
+}
+
+/* Responsive glass effects */
+@media (max-width: 480px) {
+    .glass {
+        backdrop-filter: blur(8px);
+        border-radius: 1rem;
+        background: rgba(255, 255, 255, 0.3);
+    }
+    
+    .dark .glass {
+        background: rgba(31, 41, 55, 0.3);
+    }
+}
+
+@media (min-width: 1281px) {
+    .glass {
+        backdrop-filter: blur(15px);
+        border-radius: 2rem;
+    }
+}
+
+/* Performance optimization for low-end devices */
+@media (max-width: 768px) and (max-resolution: 192dpi) {
+    .glass {
+        backdrop-filter: blur(5px);
+    }
+}
+
+/* Enhanced Hover Effects - Responsive */
+.hover-lift {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Only apply hover effects on devices that support hover */
+@media (hover: hover) and (pointer: fine) {
+    .hover-lift:hover {
+        transform: translateY(-2px);
+    }
+}
+
+/* Touch feedback for mobile devices */
+@media (hover: none) and (pointer: coarse) {
+    .hover-lift:active {
+        transform: scale(0.98);
+        transition: transform 0.1s ease;
+    }
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .hover-lift,
+    .hover-lift:hover,
+    .hover-lift:active {
+        transform: none !important;
+        transition: none !important;
+    }
+}
+
+/* Professional gradient text */
+.gradient-text {
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6, #7ADAA5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Enhanced button interactions */
+.btn-hover-scale {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-hover-scale:hover {
+    transform: scale(1.05);
+}
+
+.btn-hover-scale:active {
+    transform: scale(0.98);
+}
+
+/* Enhanced Loading States - Responsive */
+.loading-ring {
+    position: relative;
+}
+
+.loading-ring::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 2px solid transparent;
+    border-top: 2px solid #3b82f6;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Responsive loading sizes */
+@media (max-width: 480px) {
+    .loading-ring {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+    
+    .w-20 {
+        width: 3rem;
+    }
+    
+    .h-20 {
+        height: 3rem;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .loading-ring {
+        width: 2rem;
+        height: 2rem;
+    }
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Enhanced Image Container - Responsive */
+.image-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1rem;
+}
+
+.image-container img {
+    transition: transform 0.3s ease;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Only apply hover effects on non-touch devices */
+@media (hover: hover) and (pointer: fine) {
+    .image-container:hover img {
+        transform: scale(1.02);
+    }
+}
+
+/* Responsive image sizing */
+@media (max-width: 480px) {
+    .image-container {
+        border-radius: 0.5rem;
+    }
+    
+    .aspect-square {
+        aspect-ratio: 1 / 1;
+        max-width: 200px;
+        margin: 0 auto;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .aspect-square {
+        max-width: 280px;
+        margin: 0 auto;
+    }
+}
+
+@media (min-width: 769px) {
+    .aspect-square {
+        max-width: 350px;
+    }
+}
+
+/* Enhanced Accessibility and Device Support */
+
+/* Touch device specific styles */
+.touch-device button,
+.touch-device .btn-hover-scale {
+    min-height: 44px;
+    min-width: 44px;
+    touch-action: manipulation;
+}
+
+.touch-device .hover-lift:hover {
+    transform: none;
+}
+
+.touch-device .hover-lift:active {
+    transform: scale(0.98);
+}
+
+/* Keyboard navigation support */
+.keyboard-navigation *:focus {
+    outline: 2px solid #3b82f6 !important;
+    outline-offset: 2px !important;
+    border-radius: 4px;
+}
+
+.keyboard-navigation button:focus,
+.keyboard-navigation a:focus {
+}
+
+/* Viewport height handling for mobile browsers */
+:root {
+    --vh: 1vh;
+}
+
+.min-h-screen {
+    min-height: calc(var(--vh, 1vh) * 100);
+}
+
+/* Enhanced mobile menu animations */
+#mobile-menu {
+    transform-origin: top center;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#mobile-menu.hidden {
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+}
+
+#mobile-menu:not(.hidden) {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+}
+
+/* Theme toggle enhancements */
+#theme-toggle {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#theme-toggle:active {
+    transform: scale(0.95);
+}
+
+/* Mobile menu toggle improvements */
+#mobile-menu-toggle {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#mobile-menu-toggle i {
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    html {
+        scroll-behavior: auto;
+    }
+    
+    .hover-lift,
+    .hover-lift:hover,
+    .hover-lift:active {
+        transform: none !important;
+    }
+    
+    #mobile-menu,
+    #theme-toggle,
+    #mobile-menu-toggle {
+        transition: none !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .glass {
+        background: rgba(255, 255, 255, 0.9);
+        border: 2px solid rgba(0, 0, 0, 0.2);
+    }
+    
+    .dark .glass {
+        background: rgba(31, 41, 55, 0.9);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+}
+
+/* Print styles */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+    
+    body {
+        background: white !important;
+        color: black !important;
+    }
+    
+    .glass {
+        background: white !important;
+        border: 1px solid #ccc !important;
+    }
+    
+    nav, footer {
+        display: none !important;
+    }
+}
+
+/* Professional toast notification positioning */
+#toast-container {
+    position: fixed;
+    top: 6rem;
+    right: 1.5rem;
+    z-index: 100;
+    max-width: 24rem;
+}
+
+/* Comprehensive Responsive Design System */
+
+/* Mobile First - 320px to 480px */
+@media (max-width: 480px) {
+    /* Base layout adjustments */
+    .max-w-7xl {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    /* Typography scaling */
+    .text-4xl { font-size: 2rem; }
+    .text-5xl { font-size: 2.5rem; }
+    .text-6xl { font-size: 3rem; }
+    .text-3xl { font-size: 1.75rem; }
+    .text-2xl { font-size: 1.5rem; }
+    .text-xl { font-size: 1.125rem; }
+    
+    /* Navigation improvements */
+    nav .flex {
+        padding: 0 0.75rem;
+    }
+    
+    /* Grid adjustments */
+    .grid-cols-3 {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    /* Modal improvements */
+    .modal-backdrop {
+        padding: 1rem;
+    }
+    
+    /* Upload area improvements */
+    #upload-container {
+        padding: 1.5rem;
+    }
+    
+    /* Button sizing */
+    .btn-hover-scale {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.875rem;
+    }
+    
+    /* Card padding */
+    .glass {
+        padding: 1rem;
+    }
+    
+    /* Image preview sizing */
+    .aspect-square {
+        max-width: 200px;
+        margin: 0 auto;
+    }
+    
+    /* Statistics grid */
+    .grid.grid-cols-3 {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+}
+
+/* Small Mobile - 481px to 640px */
+@media (min-width: 481px) and (max-width: 640px) {
+    .text-4xl { font-size: 2.25rem; }
+    .text-5xl { font-size: 3rem; }
+    .text-6xl { font-size: 3.5rem; }
+    
+    .grid-cols-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .aspect-square {
+        max-width: 250px;
+        margin: 0 auto;
+    }
+}
+
+/* Toast container - all small screens */
+@media (max-width: 640px) {
+    #toast-container {
+        top: 5rem;
+        right: 1rem;
+        left: 1rem;
+        max-width: none;
+    }
+}
+
+/* Tablet Portrait - 641px to 768px */
+@media (min-width: 641px) and (max-width: 768px) {
+    .max-w-7xl {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+    
+    /* Grid improvements */
+    .grid.md\:grid-cols-2 {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .grid.md\:grid-cols-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .grid.md\:grid-cols-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* Upload container adjustments */
+    #upload-container {
+        padding: 2rem;
+    }
+    
+    /* Modal sizing */
+    .relative.bg-white\/95 {
+        max-width: 90vw;
+        margin: 0 auto;
+    }
+}
+
+/* Tablet Landscape - 769px to 1024px */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .max-w-7xl {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+    
+    /* Better grid layouts */
+    .grid.lg\:grid-cols-2 {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    /* Navigation adjustments */
+    .hidden.md\:flex {
+        display: flex;
+        gap: 0.5rem;
+    }
+    
+    /* Card improvements */
+    .glass {
+        padding: 1.5rem;
+    }
+    
+    /* Statistics layout */
+    .grid.grid-cols-3 {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+/* Small Desktop - 1025px to 1280px */
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .max-w-7xl {
+        max-width: 1200px;
+    }
+    
+    /* Grid optimizations */
+    .grid.lg\:grid-cols-2 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem;
+    }
+    
+    .grid.md\:grid-cols-3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .grid.md\:grid-cols-4 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Large Desktop - 1281px+ */
+@media (min-width: 1281px) {
+    .max-w-7xl {
+        max-width: 1400px;
+    }
+    
+    /* Enhanced spacing */
+    .glass {
+        padding: 3rem;
+    }
+    
+    /* Better typography */
+    .text-6xl {
+        font-size: 4rem;
+    }
+    
+    .text-5xl {
+        font-size: 3.5rem;
+    }
+    
+    /* Larger cards */
+    .aspect-square {
+        max-width: 400px;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    /* Larger touch targets */
+    button, .btn-hover-scale {
+        min-height: 44px;
+        min-width: 44px;
+        padding: 0.75rem 1.5rem;
+    }
+    
+    /* Remove hover effects on touch devices */
+    .hover-lift:hover {
+        transform: none;
+    }
+    
+    .btn-hover-scale:hover {
+        transform: none;
+    }
+    
+    /* Enhance focus states for touch */
+    button:focus,
+    input:focus,
+    .focus\:outline-none:focus {
+        outline: 2px solid #3b82f6;
+        outline-offset: 2px;
+    }
+}
+
+/* High-resolution displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    /* Crisp rendering */
+    * {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    
+    /* Enhanced shadows for retina */
+    .shadow-professional {
+        /* Shadow-free design */
+    }
+}
+
+/* Print optimizations */
+@media print {
+    /* Hide interactive elements */
+    nav, footer, button, .btn-hover-scale {
+        display: none !important;
+    }
+    
+    /* Optimize for print */
+    body {
+        background: white !important;
+        color: black !important;
+        font-size: 12pt;
+    }
+    
+    .glass {
+        background: white !important;
+        border: 1px solid #ccc !important;
+    }
+    
+    /* Page breaks */
+    .grid > div {
+        break-inside: avoid;
+    }
+}
+
+/* Landscape orientation adjustments */
+@media (orientation: landscape) and (max-height: 600px) {
+    /* Compact header */
+    nav {
+        height: 3rem;
+    }
+    
+    nav .h-16 {
+        height: 3rem;
+    }
+    
+    /* Reduced vertical spacing */
+    .py-12 {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+    
+    .mb-16 {
+        margin-bottom: 2rem;
+    }
+}
+
+/* Ultra-wide screens */
+@media (min-width: 1920px) {
+    .max-w-7xl {
+        max-width: 1600px;
+    }
+    
+    /* Prevent excessive stretching */
+    .glass {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    /* Better grid spacing */
+    .grid {
+        gap: 3rem;
+    }
+}
+
+/* Safe area insets for devices with notches */
+@supports (padding: max(0px)) {
+    .fixed {
+        padding-left: max(1rem, env(safe-area-inset-left));
+        padding-right: max(1rem, env(safe-area-inset-right));
+    }
+    
+    nav {
+        padding-top: max(0px, env(safe-area-inset-top));
+    }
+    
+    #toast-container {
+        top: max(5rem, calc(5rem + env(safe-area-inset-top)));
+        right: max(1rem, env(safe-area-inset-right));
+        left: max(1rem, env(safe-area-inset-left));
+    }
+}
+
+/* Enhanced contrast mode support */
+@media (prefers-contrast: high) {
+    .glass {
+        background: rgba(255, 255, 255, 0.95);
+        border: 2px solid rgba(0, 0, 0, 0.3);
+        backdrop-filter: none;
+    }
+    
+    .dark .glass {
+        background: rgba(31, 41, 55, 0.95);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    button, .btn-hover-scale {
+        border: 2px solid currentColor;
+    }
+    
+    .badge {
+        border: 2px solid currentColor;
+    }
+}
+
+/* Focus improvements for better accessibility */
+@media (prefers-reduced-motion: no-preference) {
+    :focus {
+        transition: box-shadow 0.15s ease-in-out;
+    }
+}
+
+/* Enhanced touch targets for small screens */
+@media (max-width: 480px) and (pointer: coarse) {
+    nav a {
+        padding: 0.75rem 1rem;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+    }
+    
+    button {
+        padding: 0.75rem 1.5rem;
+        min-height: 48px;
+    }
+    
+    .badge {
+        padding: 0.5rem 1rem;
+        min-height: 36px;
+    }
+    
+    input, select, textarea {
+        min-height: 48px;
+        font-size: 16px; /* Prevent zoom on iOS */
+    }
+}
+
+/* Print-specific responsive adjustments */
+@media print {
+    .responsive-hide-print {
+        display: none !important;
+    }
+    
+    .grid {
+        break-inside: avoid;
+    }
+    
+    .result-card {
+        break-inside: avoid;
+        margin-bottom: 1rem;
+    }
+    
+    nav, footer, button, .fixed {
+        display: none !important;
+    }
+    
+    .container {
+        max-width: none !important;
+        padding: 0 !important;
+    }
+}
+
+/* Enhanced modal backdrop */
+.modal-backdrop {
+    backdrop-filter: blur(8px);
+    background: rgba(0, 0, 0, 0.6);
+}
+
+/* Professional form inputs */
+input[type="file"]::-webkit-file-upload-button {
+    display: none;
+}
+
+/* Enhanced Selection and Touch Feedback */
+::selection {
+    background: rgba(59, 130, 246, 0.3);
+    color: inherit;
+}
+
+::-moz-selection {
+    background: rgba(59, 130, 246, 0.3);
+    color: inherit;
+}
+
+/* Touch feedback for interactive elements */
+@media (hover: none) and (pointer: coarse) {
+    button:active,
+    .btn-hover-scale:active {
+        transform: scale(0.95);
+        background-color: rgba(59, 130, 246, 0.1);
+    }
+    
+    a:active {
+        background-color: rgba(59, 130, 246, 0.05);
+        border-radius: 0.25rem;
+    }
+}
+
+/* Professional loading states */
+.skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+.dark .skeleton {
+    background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
+    background-size: 200% 100%;
+}
+
+@keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* Enhanced Progress Bar - Responsive */
+.progress-bar-animated {
+    background-size: 20px 20px;
+    background-image: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.15) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.15) 50%,
+        rgba(255, 255, 255, 0.15) 75%,
+        transparent 75%,
+        transparent
+    );
+    animation: progress-bar-stripes 1s linear infinite;
+}
+
+/* Responsive progress bar sizing */
+@media (max-width: 480px) {
+    .progress-bar {
+        height: 8px;
+        border-radius: 4px;
+    }
+    
+    .progress-bar-animated {
+        background-size: 15px 15px;
+    }
+}
+
+@media (min-width: 1281px) {
+    .progress-bar {
+        height: 16px;
+        border-radius: 8px;
+    }
+    
+    .progress-bar-animated {
+        background-size: 25px 25px;
+    }
+}
+
+@keyframes progress-bar-stripes {
+    0% { background-position: 0 0; }
+    100% { background-position: 20px 0; }
+}
+
+/* Enhanced mobile-first animations */
+@media (max-width: 768px) {
+    @keyframes mobile-fade-in {
+        0% { 
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        100% { 
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    @keyframes mobile-scale-in {
+        0% { 
+            opacity: 0;
+            transform: scale(0.95);
+        }
+        100% { 
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+    
+    .animate-fade-in {
+        animation: mobile-fade-in 0.3s ease-out;
+    }
+    
+    .animate-scale-in {
+        animation: mobile-scale-in 0.25s ease-out;
+    }
+}
+
+/* Performance optimizations for lower-end devices */
+@media (max-width: 768px) and (max-resolution: 150dpi) {
+    * {
+        transform: translateZ(0); /* Enable hardware acceleration */
+    }
+    
+    .glass {
+        backdrop-filter: none;
+        background: rgba(255, 255, 255, 0.9);
+    }
+    
+    .dark .glass {
+        background: rgba(31, 41, 55, 0.9);
+    }
+    
+    .shadow-professional,
+    .shadow-elegant {
+        /* Shadow-free design */
+    }
+}
+
+/* Enhanced Badge System - Responsive */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    border-radius: 1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid transparent;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+}
+
+/* Responsive badge sizing */
+@media (max-width: 480px) {
+    .badge {
+        padding: 0.375rem 0.75rem;
+        font-size: 0.875rem;
+        gap: 0.375rem;
+        border-radius: 0.75rem;
+    }
+    
+    .badge i {
+        width: 1rem;
+        height: 1rem;
+    }
+}
+
+@media (min-width: 1281px) {
+    .badge {
+        padding: 0.75rem 1.5rem;
+        font-size: 1.125rem;
+        gap: 0.75rem;
+        border-radius: 1.25rem;
+    }
+    
+    .badge i {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+}
+
+/* AI Generated - Warning/Danger Styling */
+.badge-ai-generated {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+    border: 2px solid #fca5a5;
+}
+
+.badge-ai-generated:hover {
+    transform: scale(1.02);
+}
+
+/* Real Image - Success Styling */
+.badge-real {
+    background: linear-gradient(135deg, #7ADAA5 0%, #7ADAA5 100%);
+    color: white;
+    border: 2px solid #7ADAA5;
+}
+
+.badge-real:hover {
+    transform: scale(1.02);
+}
+
+/* Unknown/Error - Neutral Styling */
+.badge-unknown {
+    background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+    color: white;
+    border: 2px solid #d1d5db;
+}
+
+/* Progress Bar System */
+.progress-bar {
+    height: 12px;
+    border-radius: 6px;
+    transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Force AI Generated Progress Bar - Professional Red */
+div[id="confidence-bar"].progress-bar-ai-generated,
+#confidence-bar.progress-bar-ai-generated,
+.progress-bar-ai-generated {
+    background: #dc2626 !important;
+    background-image: linear-gradient(90deg, #dc2626 0%, #b91c1c 50%, #991b1b 100%) !important;
+    background-color: #dc2626 !important;
+    border: 2px solid rgba(220, 38, 38, 0.5) !important;
+}
+
+/* Force Real Image Progress Bar - Professional Green */
+div[id="confidence-bar"].progress-bar-real,
+#confidence-bar.progress-bar-real,
+.progress-bar-real {
+    background: #7ADAA5 !important;
+    background-image: linear-gradient(90deg, #7ADAA5 0%, #5fb88b 50%, #4a9a72 100%) !important;
+    background-color: #7ADAA5 !important;
+    border: 2px solid rgba(122, 218, 165, 0.5) !important;
+}
+
+/* Override any dark mode or other conflicting styles */
+.dark #confidence-bar.progress-bar-ai-generated,
+.dark div[id="confidence-bar"].progress-bar-ai-generated {
+    background: #dc2626 !important;
+    background-image: linear-gradient(90deg, #dc2626 0%, #b91c1c 50%, #991b1b 100%) !important;
+    background-color: #dc2626 !important;
+}
+
+.dark #confidence-bar.progress-bar-real,
+.dark div[id="confidence-bar"].progress-bar-real {
+    background: #7ADAA5 !important;
+    background-image: linear-gradient(90deg, #7ADAA5 0%, #5fb88b 50%, #4a9a72 100%) !important;
+    background-color: #7ADAA5 !important;
+}
+
+/* Ensure no other styles can override */
+#confidence-bar[style*="background"] {
+    /* This selector has higher specificity for inline styles */
+}
+
+/* Additional fallback with element selector */
+div#confidence-bar {
+    transition: all 1000ms ease-out !important;
+    border-radius: 9999px !important;
+    position: relative !important;
+}
+
+/* Enhanced Result Cards - Responsive */
+.result-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 1.5rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.dark .result-card {
+    background: rgba(31, 41, 55, 0.95);
+    border: 1px solid rgba(75, 85, 99, 0.2);
+}
+
+/* Hover effects only on non-touch devices */
+@media (hover: hover) and (pointer: fine) {
+    .result-card:hover {
+        transform: translateY(-2px);
+    }
+}
+
+/* Responsive card sizing */
+@media (max-width: 480px) {
+    .result-card {
+        border-radius: 1rem;
+        padding: 1rem;
+        margin-bottom: 0.75rem;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .result-card {
+        padding: 1.25rem;
+    }
+}
+
+@media (min-width: 1281px) {
+    .result-card {
+        border-radius: 2rem;
+        padding: 2rem;
+        margin-bottom: 1.5rem;
+    }
+}
+
+/* Professional Circular Image Border System */
+.image-ai-generated {
+    border: 4px solid #ef4444;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+}
+
+.image-real {
+    border: 4px solid #7ADAA5;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Motion Wave Effects */
+.image-ai-generated::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(transparent, rgba(239, 68, 68, 0.3), transparent, rgba(239, 68, 68, 0.3));
+    animation: rotate-wave 3s linear infinite;
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.image-real::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(transparent, rgba(122, 218, 165, 0.3), transparent, rgba(122, 218, 165, 0.3));
+    animation: rotate-wave 3s linear infinite;
+    border-radius: 50%;
+    z-index: -1;
+}
+
+@keyframes rotate-wave {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Enhanced Indicator Badges - Responsive */
+.indicator-strong {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.indicator-moderate {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: white;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.indicator-weak {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+/* Responsive indicator sizing */
+@media (max-width: 480px) {
+    .indicator-strong,
+    .indicator-moderate,
+    .indicator-weak {
+        font-size: 0.625rem;
+        padding: 0.2rem 0.5rem;
+        border-radius: 0.5rem;
+        gap: 0.125rem;
+    }
+}
+
+@media (min-width: 769px) {
+    .indicator-strong,
+    .indicator-moderate,
+    .indicator-weak {
+        font-size: 0.875rem;
+        padding: 0.375rem 1rem;
+        border-radius: 1rem;
+        gap: 0.375rem;
+    }
+}
+
+/* Enhanced Wave Animation for AI Detection */
+.ai-detected-wave {
+    animation: warning-pulse 1.5s ease-in-out infinite, warning-shake 3s ease-in-out infinite;
+    position: relative;
+}
+
+.real-detected-wave {
+    animation: success-pulse 3s ease-in-out infinite, gentle-float 4s ease-in-out infinite;
+    position: relative;
+}
+
+/* Warning waves - Multiple aggressive ripples for AI Generated */
+.ai-detected-wave::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    right: -15px;
+    bottom: -15px;
+    border-radius: 50%;
+    border: 3px solid rgba(239, 68, 68, 0.4);
+    animation: warning-ripple-1 1.5s infinite;
+    z-index: -1;
+}
+
+.ai-detected-wave::after {
+    content: '';
+    position: absolute;
+    top: -25px;
+    left: -25px;
+    right: -25px;
+    bottom: -25px;
+    border-radius: 50%;
+    border: 2px solid rgba(239, 68, 68, 0.2);
+    animation: warning-ripple-2 1.5s infinite 0.75s;
+    z-index: -2;
+}
+
+/* Gentle waves - Single calm ripple for Real Images */
+.real-detected-wave::after {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: -12px;
+    right: -12px;
+    bottom: -12px;
+    border-radius: 50%;
+    border: 2px solid rgba(122, 218, 165, 0.3);
+    animation: gentle-ripple 3s infinite;
+    z-index: -1;
+}
+
+/* Warning Animations - Fast, aggressive, attention-grabbing */
+@keyframes warning-pulse {
+    0%, 100% { 
+ 
+        transform: scale(1);
+        filter: brightness(1);
+    }
+    25% { 
+ 
+        transform: scale(1.03);
+        filter: brightness(1.2);
+    }
+    75% { 
+ 
+        transform: scale(1.01);
+        filter: brightness(1.1);
+    }
+}
+
+@keyframes warning-shake {
+    0%, 100% { transform: translateX(0) rotate(0deg); }
+    10% { transform: translateX(-1px) rotate(-0.5deg); }
+    20% { transform: translateX(1px) rotate(0.5deg); }
+    30% { transform: translateX(-1px) rotate(-0.5deg); }
+    40% { transform: translateX(1px) rotate(0.5deg); }
+    50% { transform: translateX(0) rotate(0deg); }
+}
+
+@keyframes warning-ripple-1 {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+        border-width: 3px;
+    }
+    50% {
+        opacity: 0.4;
+        border-width: 2px;
+    }
+    100% {
+        transform: scale(1.4);
+        opacity: 0;
+        border-width: 1px;
+    }
+}
+
+@keyframes warning-ripple-2 {
+    0% {
+        transform: scale(1);
+        opacity: 0.6;
+        border-width: 2px;
+    }
+    100% {
+        transform: scale(1.6);
+        opacity: 0;
+        border-width: 1px;
+    }
+}
+
+/* Success Animations - Slow, calm, reassuring */
+@keyframes success-pulse {
+    0%, 100% { 
+ 
+        transform: scale(1);
+    }
+    50% { 
+ 
+        transform: scale(1.01);
+    }
+}
+
+@keyframes gentle-float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-3px); }
+}
+
+@keyframes gentle-ripple {
+    0% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+    100% {
+        transform: scale(1.3);
+        opacity: 0;
+    }
+}
+
+/* Enhanced Modal System - Responsive */
+@keyframes fade-in {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes scale-in {
+    0% { 
+        transform: scale(0.9) translateY(20px);
+        opacity: 0;
+    }
+    100% { 
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes spin-slow {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive modal adjustments */
+@media (max-width: 480px) {
+    .fixed.inset-0 .relative {
+        margin: 1rem;
+        max-width: calc(100vw - 2rem);
+        max-height: calc(100vh - 2rem);
+        overflow-y: auto;
+    }
+    
+    .relative.bg-white\/95 {
+        padding: 1.5rem;
+        border-radius: 1rem;
+    }
+    
+    /* Adjust modal text sizes */
+    .text-5xl {
+        font-size: 2rem;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .fixed.inset-0 .relative {
+        margin: 1.5rem;
+        max-width: calc(100vw - 3rem);
+    }
+    
+    .relative.bg-white\/95 {
+        padding: 2rem;
+    }
+}
+
+/* Modal backdrop improvements */
+.modal-backdrop {
+    backdrop-filter: blur(12px);
+    background: rgba(0, 0, 0, 0.6);
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .modal-backdrop {
+        backdrop-filter: blur(8px);
+    }
+}
+
+.animate-fade-in {
+    animation: fade-in 0.5s ease-out;
+}
+
+.animate-scale-in {
+    animation: scale-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.animate-spin-slow {
+    animation: spin-slow 3s linear infinite;
+}
+
+/* Additional Professional Modal Animations */
+@keyframes modal-entrance {
+    0% { 
+        transform: scale(0.8) translateY(40px) rotateX(15deg);
+        opacity: 0;
+        filter: blur(10px);
+    }
+    50% {
+        transform: scale(1.05) translateY(-10px) rotateX(5deg);
+        opacity: 0.8;
+        filter: blur(2px);
+    }
+    100% { 
+        transform: scale(1) translateY(0) rotateX(0deg);
+        opacity: 1;
+        filter: blur(0px);
+    }
+}
+
+@keyframes reverse-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(-360deg); }
+}
+
+@keyframes pulse-gentle {
+    0%, 100% { 
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% { 
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+@keyframes ping-slow {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    75%, 100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+@keyframes ping-slower {
+    0% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+    75%, 100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+@keyframes text-glow {
+    0%, 100% { color: #3b82f6; }
+    50% { color: #8b5cf6; }
+}
+
+@keyframes number-pulse {
+    0%, 100% { 
+        transform: scale(1);
+        filter: brightness(1);
+    }
+    50% { 
+        transform: scale(1.1);
+        filter: brightness(1.2);
+    }
+}
+
+@keyframes progress-fill {
+    0% { width: 0%; }
+    100% { width: 75%; }
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+@keyframes float-delayed {
+    0%, 100% { transform: translateY(0px) translateX(20px) rotate(0deg); }
+    50% { transform: translateY(-20px) translateX(20px) rotate(5deg); }
+}
+
+.animate-modal-entrance {
+    animation: modal-entrance 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.animate-reverse-spin {
+    animation: reverse-spin 4s linear infinite;
+}
+
+.animate-pulse-gentle {
+    animation: pulse-gentle 2s ease-in-out infinite;
+}
+
+.animate-ping-slow {
+    animation: ping-slow 3s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.animate-ping-slower {
+    animation: ping-slower 4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.animate-text-glow {
+    animation: text-glow 2s ease-in-out infinite;
+}
+
+.animate-number-pulse {
+    animation: number-pulse 1.5s ease-in-out infinite;
+}
+
+.animate-progress-fill {
+    animation: progress-fill 5s ease-out;
+}
+
+.animate-shimmer {
+    animation: shimmer 2s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+    animation: float-delayed 6s ease-in-out infinite;
+}

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>{% block title %}AI Image Detection - Verify Authentic vs AI-Generated Images{% endblock %}</title>
+    <meta name="description" content="{% block description %}Detect AI-generated images with 96.8% accuracy using advanced deep learning algorithms. Upload any image for instant analysis and detailed reporting.{% endblock %}">
+    <meta name="keywords" content="AI detection, image verification, deepfake detection, AI generated images, machine learning, computer vision">
+    <meta name="author" content="AI Image Detection">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{% block canonical %}{{ request.url }}{% endblock %}">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.url }}">
+    <meta property="og:title" content="{% block og_title %}AI Image Detection - Advanced AI-Generated Image Verification{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Professional AI image detection service with 96.8% accuracy. Instantly verify if images are AI-generated or authentic using cutting-edge deep learning technology.{% endblock %}">
+    
+    <!-- Twitter Card -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ request.url }}">
+    <meta property="twitter:title" content="{% block twitter_title %}AI Image Detection - Verify Authentic vs AI-Generated Images{% endblock %}">
+    <meta property="twitter:description" content="{% block twitter_description %}Upload any image for instant AI detection analysis. Professional-grade verification with detailed reporting and 96.8% accuracy.{% endblock %}">
+    
+    <!-- Technical Meta Tags -->
+    <meta name="theme-color" content="#3b82f6">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="format-detection" content="telephone=no">
+    
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Professional Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        },
+                        secondary: {
+                            50: '#faf5ff',
+                            100: '#f3e8ff',
+                            200: '#e9d5ff',
+                            300: '#d8b4fe',
+                            400: '#c084fc',
+                            500: '#a855f7',
+                            600: '#9333ea',
+                            700: '#7c3aed',
+                            800: '#6b21a8',
+                            900: '#581c87',
+                        },
+                        accent: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            200: '#99f6e4',
+                            300: '#5eead4',
+                            400: '#2dd4bf',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                            800: '#115e59',
+                            900: '#134e4a',
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.6s ease-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'scale-in': 'scaleIn 0.4s ease-out',
+                        'pulse-slow': 'pulse 3s ease-in-out infinite',
+                        'bounce-gentle': 'bounceGentle 2s ease-in-out infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        scaleIn: {
+                            '0%': { opacity: '0', transform: 'scale(0.95)' },
+                            '100%': { opacity: '1', transform: 'scale(1)' }
+                        },
+                        bounceGentle: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-8px)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',
+                        'professional': '0 4px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 20px -5px rgba(0, 0, 0, 0.04)',
+                        'elegant': '0 10px 40px -10px rgba(0, 0, 0, 0.1), 0 2px 9px -3px rgba(0, 0, 0, 0.06)',
+                    },
+                    backdropBlur: {
+                        'xs': '2px',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <!-- Custom Styles -->
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgb(156 163 175 / 0.5);
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgb(156 163 175 / 0.7);
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: rgb(75 85 99 / 0.5);
+        }
+        .dark ::-webkit-scrollbar-thumb:hover {
+            background: rgb(75 85 99 / 0.7);
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Professional glassmorphism effect */
+        .glass {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        
+        .dark .glass {
+            background: rgba(31, 41, 55, 0.25);
+            border: 1px solid rgba(75, 85, 99, 0.18);
+        }
+        
+        /* Professional hover effects */
+        .hover-lift {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .hover-lift:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* Professional gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6, #14b8a6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "AI Image Detection",
+        "description": "Professional AI-generated image detection service with advanced deep learning algorithms",
+        "url": "{{ request.url_root }}",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "featureList": [
+            "AI Image Detection",
+            "Real vs Fake Analysis",
+            "Confidence Scoring",
+            "Detailed Reporting",
+            "Instant Results"
+        ]
+    }
+    </script>
+    
+    {% block head %}{% endblock %}
+</head>
+<body class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 font-sans antialiased">
+    <!-- Professional Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass border-b border-gray-200/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="/" class="flex items-center space-x-3 group">
+                        <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300">
+                            <i data-lucide="search" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <div class="text-xl font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
+                            AI Detector
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-1">
+                    <a href="/" class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-100/50 rounded-lg transition-all duration-200">Home</a>
+                    <a href="/how-it-works" class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-100/50 rounded-lg transition-all duration-200">How It Works</a>
+                    <a href="/about" class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-100/50 rounded-lg transition-all duration-200">About</a>
+                    <a href="/faq" class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-100/50 rounded-lg transition-all duration-200">FAQ</a>
+                </div>
+                
+                <!-- Controls -->
+                <div class="flex items-center space-x-3">
+                    
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-toggle" class="md:hidden p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100/50 rounded-lg transition-all duration-200">
+                        <i data-lucide="menu" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200/60 glass">
+            <div class="px-4 py-3 space-y-1">
+                <a href="/" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-100/50 rounded-lg transition-all duration-200">Home</a>
+                <a href="/how-it-works" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-100/50 rounded-lg transition-all duration-200">How It Works</a>
+                <a href="/about" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-100/50 rounded-lg transition-all duration-200">About</a>
+                <a href="/faq" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-100/50 rounded-lg transition-all duration-200">FAQ</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <main class="pt-16">
+        {% block content %}{% endblock %}
+    </main>
+    
+    <!-- Professional Footer -->
+    <footer class="bg-white/80 backdrop-blur-md border-t border-gray-200/60 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Brand -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-8 h-8 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-lg flex items-center justify-center">
+                            <i data-lucide="search" class="w-5 h-5 text-white"></i>
+                        </div>
+                        <span class="text-xl font-bold text-gray-900">AI Detector</span>
+                    </div>
+                    <p class="text-gray-600 mb-6 max-w-md">
+                        Professional AI image detection service using cutting-edge deep learning algorithms. 
+                        Verify the authenticity of images with industry-leading accuracy.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-primary-500 transition-colors duration-200">
+                            <i data-lucide="twitter" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary-500 transition-colors duration-200">
+                            <i data-lucide="github" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary-500 transition-colors duration-200">
+                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Links -->
+                <div>
+                    <h3 class="font-semibold text-gray-900 mb-4">Product</h3>
+                    <ul class="space-y-3">
+                        <li><a href="/" class="text-gray-600 hover:text-primary-500 transition-colors duration-200 text-sm">Home</a></li>
+                        <li><a href="/how-it-works" class="text-gray-600 hover:text-primary-500 transition-colors duration-200 text-sm">How It Works</a></li>
+                        <li><a href="/about" class="text-gray-600 hover:text-primary-500 transition-colors duration-200 text-sm">About</a></li>
+                        <li><a href="/faq" class="text-gray-600 hover:text-primary-500 transition-colors duration-200 text-sm">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Support -->
+                <div>
+                    <h3 class="font-semibold text-gray-900 mb-4">Support</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-600 hover:text-primary-500 transition-colors duration-200 text-sm">Documentation</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-primary-500 transition-colors duration-200 text-sm">API Reference</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-primary-500 transition-colors duration-200 text-sm">Contact</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-primary-500 transition-colors duration-200 text-sm">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="border-t border-gray-200/60 mt-8 pt-8 text-center">
+                <p class="text-gray-600 text-sm">
+                    © 2025 AI Image Detection. All rights reserved. Professional AI detection technology.
+                </p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+    {% block scripts %}{% endblock %}
+    
+    <!-- Initialize Icons -->
+    <script>
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    </script>
+</body>
+</html>

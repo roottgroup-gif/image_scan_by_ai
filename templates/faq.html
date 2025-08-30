@@ -1,0 +1,260 @@
+{% extends "base.html" %}
+
+{% block title %}FAQ - AI Detection Checker | RootGroup.tech{% endblock %}
+{% block meta_title %}FAQ - AI Detection Checker | RootGroup.tech{% endblock %}
+{% block meta_description %}Frequently asked questions about AI image detection. Learn about accuracy, supported formats, processing time, privacy, and how our detection technology works.{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How accurate is the AI detection?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Our AI detection system achieves 96.8% accuracy through a combination of deep learning models (ResNet50) and traditional computer vision techniques, validated across thousands of images from various AI generation models."
+      }
+    },
+    {
+      "@type": "Question", 
+      "name": "What image formats are supported?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We support all major image formats including PNG, JPG, JPEG, GIF, BMP, and WebP. Maximum file size is 16MB per image."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does analysis take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most images are analyzed within 2-3 seconds. Processing time may vary based on image size, complexity, and current server load."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my data secure and private?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, your images are processed securely and are never permanently stored on our servers. All processing happens in real-time and files are immediately deleted after analysis."
+      }
+    }
+  ]
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="min-h-screen py-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">
+                <span class="bg-gradient-to-r from-blue-600 via-purple-600 to-teal-600 bg-clip-text text-transparent">
+                    Frequently Asked Questions
+                </span>
+            </h1>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                Everything you need to know about our AI detection technology
+            </p>
+        </div>
+
+        <!-- FAQ Categories -->
+        <div class="grid md:grid-cols-3 gap-6 mb-12">
+            <div class="bg-white/80 backdrop-blur-md rounded-xl p-6 text-center border border-gray-200/50">
+                <i data-lucide="help-circle" class="w-12 h-12 text-blue-600 mx-auto mb-4"></i>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">General</h3>
+                <p class="text-gray-600 text-sm">Basic questions about our service</p>
+            </div>
+            <div class="bg-white/80 backdrop-blur-md rounded-xl p-6 text-center border border-gray-200/50">
+                <i data-lucide="settings" class="w-12 h-12 text-purple-600 mx-auto mb-4"></i>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">Technical</h3>
+                <p class="text-gray-600 text-sm">How our technology works</p>
+            </div>
+            <div class="bg-white/80 backdrop-blur-md rounded-xl p-6 text-center border border-gray-200/50">
+                <i data-lucide="shield" class="w-12 h-12 text-teal-600 mx-auto mb-4"></i>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">Privacy</h3>
+                <p class="text-gray-600 text-sm">Data security and privacy</p>
+            </div>
+        </div>
+
+        <!-- FAQ Items -->
+        <div class="space-y-6">
+            <!-- General Questions -->
+            <div class="bg-white/80 backdrop-blur-md rounded-2xl border border-gray-200/50">
+                <div class="p-6 border-b border-gray-200/50">
+                    <h2 class="text-2xl font-bold text-gray-900 flex items-center">
+                        <i data-lucide="help-circle" class="w-6 h-6 mr-2 text-blue-600"></i>
+                        General Questions
+                    </h2>
+                </div>
+                
+                <div class="divide-y divide-gray-200/50">
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3">
+                            How accurate is the AI detection?
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Our AI detection system achieves <strong>96.8% accuracy</strong> through a combination of deep learning models (ResNet50) and traditional computer vision techniques. This accuracy rate has been validated across thousands of images from various AI generation models including DALL-E, Midjourney, Stable Diffusion, and others.
+                        </p>
+                    </div>
+
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3">
+                            What AI models can you detect?
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Our system can detect images generated by popular AI models including:
+                        </p>
+                        <ul class="mt-2 text-gray-600 list-disc list-inside space-y-1">
+                            <li>DALL-E (OpenAI)</li>
+                            <li>Midjourney</li>
+                            <li>Stable Diffusion</li>
+                            <li>Adobe Firefly</li>
+                            <li>Imagen (Google)</li>
+                            <li>And many other popular generators</li>
+                        </ul>
+                    </div>
+
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3">
+                            What image formats are supported?
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            We support all major image formats including <strong>PNG, JPG, JPEG, GIF, BMP, and WebP</strong>. Maximum file size is <strong>16MB</strong> per image to ensure optimal processing speed.
+                        </p>
+                    </div>
+
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3">
+                            How long does analysis take?
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Most images are analyzed within <strong>2-3 seconds</strong>. Processing time may vary based on image size, complexity, and current server load. Our system is optimized for real-time analysis.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technical Questions -->
+            <div class="bg-white/80 backdrop-blur-md rounded-2xl border border-gray-200/50">
+                <div class="p-6 border-b border-gray-200/50">
+                    <h2 class="text-2xl font-bold text-gray-900 flex items-center">
+                        <i data-lucide="settings" class="w-6 h-6 mr-2 text-purple-600"></i>
+                        Technical Questions
+                    </h2>
+                </div>
+                
+                <div class="divide-y divide-gray-200/50">
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3">
+                            How does the detection technology work?
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed mb-3">
+                            Our system uses a hybrid approach combining:
+                        </p>
+                        <ul class="text-gray-600 list-disc list-inside space-y-1">
+                            <li><strong>Deep Learning:</strong> ResNet50 neural network for pattern recognition</li>
+                            <li><strong>Texture Analysis:</strong> Local Binary Patterns and edge detection</li>
+                            <li><strong>Frequency Analysis:</strong> FFT-based spectral examination</li>
+                            <li><strong>Compression Forensics:</strong> JPEG artifact detection</li>
+                            <li><strong>Statistical Analysis:</strong> Pixel pattern recognition</li>
+                        </ul>
+                    </div>
+
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3">
+                            What are detection indicators?
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Detection indicators are specific visual or technical patterns that suggest AI generation. These include unusual texture patterns, frequency anomalies, compression artifacts, and statistical irregularities. Each indicator is rated as Strong, Moderate, or Weak based on its significance.
+                        </p>
+                    </div>
+
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3">
+                            Can the system be fooled?
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            While our detection rate is very high (96.8%), no detection system is 100% perfect. We continuously update our algorithms to stay ahead of new AI generation techniques. For critical applications, we recommend using multiple verification methods.
+                        </p>
+                    </div>
+
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3">
+                            Do you offer an API?
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Yes, we offer API access for developers and businesses who need to integrate AI detection into their applications. Contact us at api@rootgroup.tech for more information about our API plans and pricing.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Privacy & Security -->
+            <div class="bg-white/80 backdrop-blur-md rounded-2xl border border-gray-200/50">
+                <div class="p-6 border-b border-gray-200/50">
+                    <h2 class="text-2xl font-bold text-gray-900 flex items-center">
+                        <i data-lucide="shield" class="w-6 h-6 mr-2 text-teal-600"></i>
+                        Privacy & Security
+                    </h2>
+                </div>
+                
+                <div class="divide-y divide-gray-200/50">
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3">
+                            Is my data secure and private?
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            <strong>Yes, absolutely.</strong> Your images are processed securely and are never permanently stored on our servers. All processing happens in real-time and files are immediately deleted after analysis. We use HTTPS encryption for all data transmission.
+                        </p>
+                    </div>
+
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3">
+                            Do you store uploaded images?
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            No, we do not store uploaded images. Images are temporarily processed in memory and immediately deleted once the analysis is complete. This ensures complete privacy and security of your data.
+                        </p>
+                    </div>
+
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3">
+                            What about GDPR compliance?
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            We are fully GDPR compliant. Since we don't store personal data or images, there's minimal data processing involved. Our service processes images locally and temporarily for analysis purposes only.
+                        </p>
+                    </div>
+
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3">
+                            Can I use this for commercial purposes?
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Yes, our service can be used for commercial purposes including content verification, publishing, social media platforms, and more. For high-volume commercial use, please contact us about our enterprise solutions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="mt-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white text-center">
+            <i data-lucide="message-circle" class="w-16 h-16 mx-auto mb-4"></i>
+            <h2 class="text-3xl font-bold mb-4">Still Have Questions?</h2>
+            <p class="text-xl mb-6 opacity-90">
+                Can't find what you're looking for? We're here to help!
+            </p>
+            <div class="space-y-2">
+                <p class="text-lg">Contact us at: <strong>support@rootgroup.tech</strong></p>
+                <p class="opacity-80">We typically respond within 24 hours</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

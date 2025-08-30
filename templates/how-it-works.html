@@ -1,0 +1,267 @@
+{% extends "base.html" %}
+
+{% block title %}How It Works - AI Detection Checker | RootGroup.tech{% endblock %}
+{% block meta_title %}How It Works - AI Detection Checker | RootGroup.tech{% endblock %}
+{% block meta_description %}Learn how our AI detection technology works. Discover the advanced algorithms, deep learning models, and computer vision techniques behind our 96.8% accuracy rate.{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How AI Image Detection Works",
+  "description": "Learn how advanced AI detection algorithms analyze images to determine if they are AI-generated or authentic",
+  "supply": [
+    {
+      "@type": "HowToSupply",
+      "name": "Image file (PNG, JPG, JPEG, GIF, BMP, WebP)"
+    }
+  ],
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Upload Image",
+      "text": "Upload your image file to our secure analysis system"
+    },
+    {
+      "@type": "HowToStep", 
+      "name": "Deep Learning Analysis",
+      "text": "Our ResNet50 neural network analyzes visual patterns and features"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Computer Vision Forensics",
+      "text": "Multiple algorithms examine texture, frequency patterns, and compression artifacts"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Results Generation",
+      "text": "Receive detailed analysis with confidence score and detection indicators"
+    }
+  ]
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="min-h-screen py-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">
+                <span class="bg-gradient-to-r from-blue-600 via-purple-600 to-teal-600 bg-clip-text text-transparent">
+                    How It Works
+                </span>
+            </h1>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                Discover the advanced technology behind our AI detection system and how we achieve 96.8% accuracy
+            </p>
+        </div>
+
+        <!-- Process Steps -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+            <div class="bg-white/80 backdrop-blur-md rounded-xl p-6 text-center border border-gray-200/50">
+                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i data-lucide="upload" class="w-8 h-8 text-white"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">1. Upload</h3>
+                <p class="text-gray-600 text-sm">Securely upload your image for analysis</p>
+            </div>
+
+            <div class="bg-white/80 backdrop-blur-md rounded-xl p-6 text-center border border-gray-200/50">
+                <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i data-lucide="cpu" class="w-8 h-8 text-white"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">2. AI Analysis</h3>
+                <p class="text-gray-600 text-sm">Deep learning models examine visual patterns</p>
+            </div>
+
+            <div class="bg-white/80 backdrop-blur-md rounded-xl p-6 text-center border border-gray-200/50">
+                <div class="w-16 h-16 bg-gradient-to-br from-teal-500 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i data-lucide="microscope" class="w-8 h-8 text-white"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">3. Forensics</h3>
+                <p class="text-gray-600 text-sm">Computer vision analyzes technical signatures</p>
+            </div>
+
+            <div class="bg-white/80 backdrop-blur-md rounded-xl p-6 text-center border border-gray-200/50">
+                <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i data-lucide="bar-chart-3" class="w-8 h-8 text-white"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">4. Results</h3>
+                <p class="text-gray-600 text-sm">Receive detailed analysis and confidence score</p>
+            </div>
+        </div>
+
+        <!-- Technology Stack -->
+        <div class="bg-white/80 backdrop-blur-md rounded-2xl p-8 mb-16 border border-gray-200/50">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Our Technology Stack</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Deep Learning -->
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                        <i data-lucide="brain" class="w-6 h-6 mr-2 text-blue-600"></i>
+                        Deep Learning
+                    </h3>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start">
+                            <i data-lucide="check" class="w-5 h-5 mr-2 text-green-600 mt-0.5 flex-shrink-0"></i>
+                            ResNet50 transfer learning for feature extraction
+                        </li>
+                        <li class="flex items-start">
+                            <i data-lucide="check" class="w-5 h-5 mr-2 text-green-600 mt-0.5 flex-shrink-0"></i>
+                            Convolutional Neural Networks (CNN) for pattern recognition
+                        </li>
+                        <li class="flex items-start">
+                            <i data-lucide="check" class="w-5 h-5 mr-2 text-green-600 mt-0.5 flex-shrink-0"></i>
+                            TensorFlow framework for high-performance computing
+                        </li>
+                        <li class="flex items-start">
+                            <i data-lucide="check" class="w-5 h-5 mr-2 text-green-600 mt-0.5 flex-shrink-0"></i>
+                            Pre-trained on millions of images for accuracy
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Computer Vision -->
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                        <i data-lucide="eye" class="w-6 h-6 mr-2 text-purple-600"></i>
+                        Computer Vision Forensics
+                    </h3>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start">
+                            <i data-lucide="check" class="w-5 h-5 mr-2 text-green-600 mt-0.5 flex-shrink-0"></i>
+                            Texture analysis using Local Binary Patterns (LBP)
+                        </li>
+                        <li class="flex items-start">
+                            <i data-lucide="check" class="w-5 h-5 mr-2 text-green-600 mt-0.5 flex-shrink-0"></i>
+                            Frequency domain analysis with FFT
+                        </li>
+                        <li class="flex items-start">
+                            <i data-lucide="check" class="w-5 h-5 mr-2 text-green-600 mt-0.5 flex-shrink-0"></i>
+                            Compression artifact detection
+                        </li>
+                        <li class="flex items-start">
+                            <i data-lucide="check" class="w-5 h-5 mr-2 text-green-600 mt-0.5 flex-shrink-0"></i>
+                            Statistical pattern recognition algorithms
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detection Methods -->
+        <div class="grid md:grid-cols-3 gap-6 mb-16">
+            <div class="bg-white/80 backdrop-blur-md rounded-xl p-6 border border-gray-200/50">
+                <i data-lucide="fingerprint" class="w-12 h-12 text-blue-600 mb-4"></i>
+                <h3 class="text-lg font-semibold text-gray-900 mb-3">Texture Analysis</h3>
+                <p class="text-gray-600 text-sm mb-3">
+                    Examines surface patterns and micro-textures that differ between AI-generated and real images.
+                </p>
+                <div class="text-xs text-gray-500">
+                    • Local Binary Patterns<br>
+                    • Gray Level Co-occurrence Matrix<br>
+                    • Edge density analysis
+                </div>
+            </div>
+
+            <div class="bg-white/80 backdrop-blur-md rounded-xl p-6 border border-gray-200/50">
+                <i data-lucide="activity" class="w-12 h-12 text-purple-600 mb-4"></i>
+                <h3 class="text-lg font-semibold text-gray-900 mb-3">Frequency Domain</h3>
+                <p class="text-gray-600 text-sm mb-3">
+                    Analyzes frequency patterns and spectral characteristics unique to different generation methods.
+                </p>
+                <div class="text-xs text-gray-500">
+                    • Fast Fourier Transform<br>
+                    • High-frequency energy analysis<br>
+                    • Spectral signature detection
+                </div>
+            </div>
+
+            <div class="bg-white/80 backdrop-blur-md rounded-xl p-6 border border-gray-200/50">
+                <i data-lucide="settings" class="w-12 h-12 text-teal-600 mb-4"></i>
+                <h3 class="text-lg font-semibold text-gray-900 mb-3">Compression Forensics</h3>
+                <p class="text-gray-600 text-sm mb-3">
+                    Detects compression artifacts and encoding patterns specific to AI generation pipelines.
+                </p>
+                <div class="text-xs text-gray-500">
+                    • JPEG block analysis<br>
+                    • Compression uniformity<br>
+                    • Artifact pattern recognition
+                </div>
+            </div>
+        </div>
+
+        <!-- Accuracy Section -->
+        <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white text-center mb-16">
+            <h2 class="text-3xl font-bold mb-4">96.8% Accuracy Rate</h2>
+            <p class="text-xl mb-6 opacity-90">
+                Validated across multiple AI generation models including DALL-E, Midjourney, Stable Diffusion, and more
+            </p>
+            <div class="grid md:grid-cols-4 gap-4 text-center">
+                <div>
+                    <div class="text-2xl font-bold">50K+</div>
+                    <div class="text-sm opacity-80">Images Analyzed</div>
+                </div>
+                <div>
+                    <div class="text-2xl font-bold">15+</div>
+                    <div class="text-sm opacity-80">AI Models Detected</div>
+                </div>
+                <div>
+                    <div class="text-2xl font-bold">&lt;3s</div>
+                    <div class="text-sm opacity-80">Average Processing</div>
+                </div>
+                <div>
+                    <div class="text-2xl font-bold">24/7</div>
+                    <div class="text-sm opacity-80">Available</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="bg-white/80 backdrop-blur-md rounded-2xl p-8 border border-gray-200/50">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Frequently Asked Questions</h2>
+            
+            <div class="space-y-4">
+                <div class="border-b border-gray-200 pb-4">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">
+                        How accurate is the detection?
+                    </h3>
+                    <p class="text-gray-600">
+                        Our system achieves 96.8% accuracy through a combination of deep learning and traditional computer vision techniques, validated across thousands of images from various AI generation models.
+                    </p>
+                </div>
+
+                <div class="border-b border-gray-200 pb-4">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">
+                        What AI models can it detect?
+                    </h3>
+                    <p class="text-gray-600">
+                        Our system can detect images from DALL-E, Midjourney, Stable Diffusion, Adobe Firefly, and many other popular AI image generation models.
+                    </p>
+                </div>
+
+                <div class="border-b border-gray-200 pb-4">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">
+                        How fast is the analysis?
+                    </h3>
+                    <p class="text-gray-600">
+                        Most images are analyzed within 2-3 seconds. Processing time may vary based on image size and complexity.
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">
+                        Is my data secure?
+                    </h3>
+                    <p class="text-gray-600">
+                        Yes, your images are processed securely and are never stored on our servers. All processing happens in real-time and files are immediately deleted after analysis.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

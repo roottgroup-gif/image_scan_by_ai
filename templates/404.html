@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Page Not Found - AI Detection Checker{% endblock %}
+{% block meta_title %}Page Not Found - AI Detection Checker{% endblock %}
+{% block meta_description %}The page you are looking for could not be found. Return to our AI detection homepage to analyze images for artificial intelligence generation.{% endblock %}
+
+{% block content %}
+<div class="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full text-center">
+        <div class="bg-white/80 backdrop-blur-md rounded-2xl p-8 border border-gray-200/50">
+            <!-- 404 Icon -->
+            <div class="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i data-lucide="search-x" class="w-12 h-12 text-white"></i>
+            </div>
+            
+            <!-- Error Message -->
+            <h1 class="text-6xl font-bold text-gray-900 mb-4">404</h1>
+            <h2 class="text-2xl font-semibold text-gray-900 mb-4">Page Not Found</h2>
+            <p class="text-gray-600 mb-8">
+                Sorry, the page you are looking for doesn't exist or has been moved.
+            </p>
+            
+            <!-- Action Buttons -->
+            <div class="space-y-4">
+                <a href="/" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-3 rounded-lg font-medium transition-all transform hover:scale-105 inline-block">
+                    <i data-lucide="home" class="w-5 h-5 inline mr-2"></i>
+                    Go to Homepage
+                </a>
+                
+                <div class="text-center">
+                    <p class="text-sm text-gray-500 mb-4">Or try these popular pages:</p>
+                    <div class="space-y-2">
+                        <a href="/how-it-works" class="block text-blue-600 hover:underline">How It Works</a>
+                        <a href="/about" class="block text-blue-600 hover:underline">About Us</a>
+                        <a href="/faq" class="block text-blue-600 hover:underline">FAQ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,471 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Image Detection Checker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#2563EB',
+                        secondary: '#059669',
+                        accent: '#DC2626',
+                        warning: '#F59E0B',
+                    }
+                }
+            }
+        };
+    </script>
+</head>
+<body class="font-inter bg-gradient-to-br from-slate-50 to-slate-100 min-h-screen">
+    <!-- @COMPONENT: Header -->
+    <header class="bg-white shadow-sm border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                        <i class="fas fa-eye text-white text-lg"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-slate-900">AI Detection Checker</h1>
+                        <p class="text-sm text-slate-500">Verify image authenticity</p>
+                    </div>
+                </div>
+                <nav class="hidden md:flex items-center space-x-6">
+                    <a href="#" class="text-slate-600 hover:text-slate-900 font-medium">How it works</a>
+                    <a href="#" class="text-slate-600 hover:text-slate-900 font-medium">About</a>
+                    <a href="#" class="text-slate-600 hover:text-slate-900 font-medium">FAQ</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <!-- @END_COMPONENT: Header -->
+
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- @COMPONENT: Hero Section -->
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold text-slate-900 mb-4">
+                Detect AI-Generated Images
+            </h2>
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+                Upload any image and our advanced AI model will analyze it to determine if it's real or artificially generated. Get instant results with confidence scores.
+            </p>
+        </div>
+        <!-- @END_COMPONENT: Hero Section -->
+
+        <div class="grid lg:grid-cols-2 gap-8">
+            <!-- @COMPONENT: Upload Section -->
+            <div class="bg-white rounded-2xl shadow-lg p-8">
+                <h3 class="text-2xl font-semibold text-slate-900 mb-6">Upload Image</h3>
+                
+                <!-- @FUNCTIONALITY: File upload with drag and drop support -->
+                <div id="upload-zone" class="border-2 border-dashed border-slate-300 rounded-xl p-8 text-center transition-colors hover:border-primary hover:bg-blue-50" data-implementation="Should support drag and drop, multiple formats validation">
+                    <div class="upload-content">
+                        <i class="fas fa-cloud-upload-alt text-4xl text-slate-400 mb-4"></i>
+                        <h4 class="text-lg font-medium text-slate-700 mb-2">Drop your image here</h4>
+                        <p class="text-slate-500 mb-4">or click to browse</p>
+                        <input type="file" id="image-upload" class="hidden" accept=".jpg,.jpeg,.png" data-event="change:handleFileUpload">
+                        <button type="button" class="bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors" onclick="document.getElementById('image-upload').click()">
+                            Choose File
+                        </button>
+                        <p class="text-xs text-slate-400 mt-3">Supports JPG, JPEG, PNG • Max 10MB</p>
+                    </div>
+                </div>
+
+                <!-- @STATE: selectedFile:File = null, isUploading:boolean = false -->
+                <div id="file-preview" class="hidden mt-6">
+                    <div class="bg-slate-50 rounded-lg p-4">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-image text-slate-500"></i>
+                                <div>
+                                    <p class="font-medium text-slate-700" data-bind="selectedFile.name">sample-image.jpg</p>
+                                    <p class="text-sm text-slate-500" data-bind="selectedFile.size">2.4 MB</p>
+                                </div>
+                            </div>
+                            <button class="text-slate-400 hover:text-slate-600" data-event="click:removeFile">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="analyze-btn" class="w-full bg-primary text-white py-4 rounded-lg font-semibold text-lg mt-6 hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" data-event="click:analyzeImage" data-implementation="Should validate file before analysis">
+                    <span class="analyze-text">Analyze Image</span>
+                    <span class="analyzing-text hidden">
+                        <i class="fas fa-spinner fa-spin mr-2"></i>
+                        Analyzing...
+                    </span>
+                </button>
+            </div>
+            <!-- @END_COMPONENT: Upload Section -->
+
+            <!-- @COMPONENT: Results Section -->
+            <div class="bg-white rounded-2xl shadow-lg p-8">
+                <h3 class="text-2xl font-semibold text-slate-900 mb-6">Analysis Results</h3>
+                
+                <!-- @STATE: analysisResult:object = null, isAnalyzing:boolean = false -->
+                <div id="results-placeholder" class="text-center py-12">
+                    <i class="fas fa-microscope text-6xl text-slate-300 mb-4"></i>
+                    <p class="text-slate-500 text-lg">Upload an image to see analysis results</p>
+                </div>
+
+                <!-- @COMPONENT: Analysis Results Display -->
+                <div id="results-content" class="hidden">
+                    <!-- Image Preview -->
+                    <div class="mb-6">
+                        <img id="analyzed-image" src="" alt="Analyzed image" class="w-full h-48 object-cover rounded-lg shadow-sm" data-mock-image="true">
+                    </div>
+
+                    <!-- Classification Result -->
+                    <div class="mb-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <h4 class="text-lg font-semibold text-slate-700">Classification</h4>
+                            <div id="result-badge" class="px-3 py-1 rounded-full text-sm font-medium" data-bind="analysisResult.classification">
+                                <!-- Dynamic badge based on result -->
+                            </div>
+                        </div>
+                        
+                        <!-- Confidence Score -->
+                        <div class="bg-slate-50 rounded-lg p-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-slate-600 font-medium">Confidence Score</span>
+                                <span id="confidence-score" class="text-2xl font-bold text-slate-900" data-bind="analysisResult.confidence">87%</span>
+                            </div>
+                            <div class="w-full bg-slate-200 rounded-full h-3">
+                                <div id="confidence-bar" class="h-3 rounded-full transition-all duration-500" style="width: 87%; background-color: #059669;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Analysis Details -->
+                    <div class="mb-6">
+                        <h4 class="text-lg font-semibold text-slate-700 mb-3">Analysis Details</h4>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
+                                <span class="text-slate-600">Processing Time</span>
+                                <span class="font-medium text-slate-900" data-bind="analysisResult.processingTime">2.3s</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
+                                <span class="text-slate-600">Image Size</span>
+                                <span class="font-medium text-slate-900" data-bind="analysisResult.imageSize">1920x1080</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
+                                <span class="text-slate-600">Model Version</span>
+                                <span class="font-medium text-slate-900">v2.1.0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Key Features Detected -->
+                    <div class="mb-6">
+                        <h4 class="text-lg font-semibold text-slate-700 mb-3">Key Indicators</h4>
+                        <!-- @MAP: analysisResult.indicators.map(indicator => ( -->
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between p-3 bg-slate-50 rounded-lg" data-mock="true">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-check-circle text-secondary"></i>
+                                    <span class="text-slate-700">Natural noise patterns</span>
+                                </div>
+                                <span class="text-sm font-medium text-secondary">Strong</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-slate-50 rounded-lg" data-mock="true">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-exclamation-triangle text-warning"></i>
+                                    <span class="text-slate-700">Edge consistency</span>
+                                </div>
+                                <span class="text-sm font-medium text-warning">Moderate</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-slate-50 rounded-lg" data-mock="true">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-times-circle text-accent"></i>
+                                    <span class="text-slate-700">Compression artifacts</span>
+                                </div>
+                                <span class="text-sm font-medium text-accent">Weak</span>
+                            </div>
+                        </div>
+                        <!-- @END_MAP )) -->
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex space-x-3">
+                        <button class="flex-1 bg-slate-100 text-slate-700 py-3 rounded-lg font-medium hover:bg-slate-200 transition-colors" data-event="click:downloadReport">
+                            <i class="fas fa-download mr-2"></i>
+                            Download Report
+                        </button>
+                        <button class="flex-1 bg-primary text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors" data-event="click:analyzeAnother">
+                            Analyze Another
+                        </button>
+                    </div>
+                </div>
+                <!-- @END_COMPONENT: Analysis Results Display -->
+            </div>
+            <!-- @END_COMPONENT: Results Section -->
+        </div>
+
+        <!-- @COMPONENT: Features Section -->
+        <div class="mt-16 grid md:grid-cols-3 gap-8">
+            <div class="text-center">
+                <div class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-bolt text-primary text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-slate-900 mb-2">Fast Analysis</h3>
+                <p class="text-slate-600">Get results in seconds with our optimized AI model designed for speed and accuracy.</p>
+            </div>
+            <div class="text-center">
+                <div class="w-16 h-16 bg-secondary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-shield-alt text-secondary text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-slate-900 mb-2">Secure & Private</h3>
+                <p class="text-slate-600">Your images are processed securely and are not stored on our servers after analysis.</p>
+            </div>
+            <div class="text-center">
+                <div class="w-16 h-16 bg-warning/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-chart-line text-warning text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-slate-900 mb-2">High Accuracy</h3>
+                <p class="text-slate-600">Trained on millions of images with 95%+ accuracy rate in detecting AI-generated content.</p>
+            </div>
+        </div>
+        <!-- @END_COMPONENT: Features Section -->
+
+        <!-- @COMPONENT: How It Works -->
+        <div class="mt-16 bg-white rounded-2xl shadow-lg p-8">
+            <h3 class="text-2xl font-semibold text-slate-900 text-center mb-8">How It Works</h3>
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="text-center">
+                    <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-lg">1</div>
+                    <h4 class="font-semibold text-slate-900 mb-2">Upload Image</h4>
+                    <p class="text-sm text-slate-600">Select and upload your image file in JPG, PNG, or JPEG format.</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-lg">2</div>
+                    <h4 class="font-semibold text-slate-900 mb-2">AI Analysis</h4>
+                    <p class="text-sm text-slate-600">Our CNN model analyzes pixel patterns, edges, and textures for AI signatures.</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-lg">3</div>
+                    <h4 class="font-semibold text-slate-900 mb-2">Get Results</h4>
+                    <p class="text-sm text-slate-600">Receive classification results with confidence score and detailed analysis.</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-lg">4</div>
+                    <h4 class="font-semibold text-slate-900 mb-2">Download Report</h4>
+                    <p class="text-sm text-slate-600">Optional detailed report with technical reasoning and feature analysis.</p>
+                </div>
+            </div>
+        </div>
+        <!-- @END_COMPONENT: How It Works -->
+    </main>
+
+    <!-- @COMPONENT: Footer -->
+    <footer class="bg-slate-900 text-white mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="col-span-2">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+                            <i class="fas fa-eye text-white text-sm"></i>
+                        </div>
+                        <span class="text-xl font-bold">AI Detection Checker</span>
+                    </div>
+                    <p class="text-slate-400 mb-4">Advanced AI-powered image authenticity verification for the modern digital world.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-slate-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-slate-400 hover:text-white"><i class="fab fa-github"></i></a>
+                        <a href="#" class="text-slate-400 hover:text-white"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Product</h4>
+                    <ul class="space-y-2 text-slate-400">
+                        <li><a href="#" class="hover:text-white">Features</a></li>
+                        <li><a href="#" class="hover:text-white">API</a></li>
+                        <li><a href="#" class="hover:text-white">Pricing</a></li>
+                        <li><a href="#" class="hover:text-white">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2 text-slate-400">
+                        <li><a href="#" class="hover:text-white">About</a></li>
+                        <li><a href="#" class="hover:text-white">Privacy</a></li>
+                        <li><a href="#" class="hover:text-white">Terms</a></li>
+                        <li><a href="#" class="hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-800 mt-8 pt-8 text-center text-slate-400">
+                <p>&copy; 2024 AI Detection Checker. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <!-- @END_COMPONENT: Footer -->
+
+    <script>
+        // TODO: Implement actual file upload, image analysis, and result processing
+        (function() {
+            // Mock functionality for demonstration
+            
+            // File upload handling
+            const uploadZone = document.getElementById('upload-zone');
+            const fileInput = document.getElementById('image-upload');
+            const filePreview = document.getElementById('file-preview');
+            const analyzeBtn = document.getElementById('analyze-btn');
+            const resultsPlaceholder = document.getElementById('results-placeholder');
+            const resultsContent = document.getElementById('results-content');
+
+            // Drag and drop functionality
+            uploadZone.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                uploadZone.classList.add('border-primary', 'bg-blue-50');
+            });
+
+            uploadZone.addEventListener('dragleave', function(e) {
+                e.preventDefault();
+                uploadZone.classList.remove('border-primary', 'bg-blue-50');
+            });
+
+            uploadZone.addEventListener('drop', function(e) {
+                e.preventDefault();
+                uploadZone.classList.remove('border-primary', 'bg-blue-50');
+                const files = e.dataTransfer.files;
+                if (files.length > 0) {
+                    handleFileSelect(files[0]);
+                }
+            });
+
+            // File selection
+            fileInput.addEventListener('change', function(e) {
+                if (e.target.files.length > 0) {
+                    handleFileSelect(e.target.files[0]);
+                }
+            });
+
+            function handleFileSelect(file) {
+                // Basic validation
+                const validTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+                const maxSize = 10 * 1024 * 1024; // 10MB
+
+                if (!validTypes.includes(file.type)) {
+                    alert('Please select a valid image file (JPG, JPEG, PNG)');
+                    return;
+                }
+
+                if (file.size > maxSize) {
+                    alert('File size must be less than 10MB');
+                    return;
+                }
+
+                // Show file preview
+                filePreview.classList.remove('hidden');
+                filePreview.querySelector('[data-bind="selectedFile.name"]').textContent = file.name;
+                filePreview.querySelector('[data-bind="selectedFile.size"]').textContent = formatFileSize(file.size);
+                
+                analyzeBtn.disabled = false;
+                analyzeBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+
+            // Analysis simulation
+            analyzeBtn.addEventListener('click', function() {
+                if (analyzeBtn.disabled) return;
+                
+                // Show loading state
+                analyzeBtn.querySelector('.analyze-text').classList.add('hidden');
+                analyzeBtn.querySelector('.analyzing-text').classList.remove('hidden');
+                analyzeBtn.disabled = true;
+
+                // Simulate analysis delay
+                setTimeout(() => {
+                    showMockResults();
+                    
+                    // Reset button
+                    analyzeBtn.querySelector('.analyze-text').classList.remove('hidden');
+                    analyzeBtn.querySelector('.analyzing-text').classList.add('hidden');
+                    analyzeBtn.disabled = false;
+                }, 3000);
+            });
+
+            function showMockResults() {
+                // Mock analysis results
+                const mockResults = [
+                    {
+                        classification: 'Real Image',
+                        confidence: 92,
+                        badgeClass: 'bg-secondary/10 text-secondary',
+                        barColor: '#059669',
+                        processingTime: '1.8s',
+                        imageSize: '1920x1080'
+                    },
+                    {
+                        classification: 'AI Generated',
+                        confidence: 87,
+                        badgeClass: 'bg-accent/10 text-accent',
+                        barColor: '#DC2626',
+                        processingTime: '2.3s',
+                        imageSize: '1024x1024'
+                    }
+                ];
+
+                const result = mockResults[Math.floor(Math.random() * mockResults.length)];
+                
+                // Update UI with results
+                resultsPlaceholder.classList.add('hidden');
+                resultsContent.classList.remove('hidden');
+                
+                const resultBadge = document.getElementById('result-badge');
+                resultBadge.textContent = result.classification;
+                resultBadge.className = `px-3 py-1 rounded-full text-sm font-medium ${result.badgeClass}`;
+                
+                document.getElementById('confidence-score').textContent = `${result.confidence}%`;
+                document.getElementById('confidence-bar').style.width = `${result.confidence}%`;
+                document.getElementById('confidence-bar').style.backgroundColor = result.barColor;
+                
+                document.querySelector('[data-bind="analysisResult.processingTime"]').textContent = result.processingTime;
+                document.querySelector('[data-bind="analysisResult.imageSize"]').textContent = result.imageSize;
+
+                // Set preview image (using a placeholder)
+                const previewImg = document.getElementById('analyzed-image');
+                previewImg.src = 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600';
+            }
+
+            function formatFileSize(bytes) {
+                if (bytes === 0) return '0 Bytes';
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+            }
+
+            // Additional event handlers for other buttons
+            document.querySelector('[data-event="click:removeFile"]')?.addEventListener('click', function() {
+                filePreview.classList.add('hidden');
+                fileInput.value = '';
+                analyzeBtn.disabled = true;
+                analyzeBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            });
+
+            document.querySelector('[data-event="click:analyzeAnother"]')?.addEventListener('click', function() {
+                resultsContent.classList.add('hidden');
+                resultsPlaceholder.classList.remove('hidden');
+                filePreview.classList.add('hidden');
+                fileInput.value = '';
+                analyzeBtn.disabled = true;
+                analyzeBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            });
+
+            document.querySelector('[data-event="click:downloadReport"]')?.addEventListener('click', function() {
+                // TODO: Implement report generation and download
+                alert('Report download functionality would be implemented here');
+            });
+        })();
+    </script>
+</body>
+</html>
